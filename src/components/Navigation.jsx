@@ -15,22 +15,22 @@ export default function Navigation({ currentPath, navigate, setIsHovering }) {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 p-4 flex justify-between items-center backdrop-blur-sm">
-        <div 
-          className="text-xl font-bold cursor-pointer"
+      <nav className="fixed top-0 left-0 right-0 z-50 p-8 flex justify-between items-center backdrop-blur-sm">
+        {/* <div 
+          className="text-3xl font-bold cursor-pointer"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
           onClick={() => navigate('/')}
         >
-          SM
-        </div>
+          {'>'} Shrey
+        </div> */}
         
-        <div className="hidden md:flex gap-4 items-center">
+        <div className="hidden md:flex gap-8 items-center">
           {navLinks.map((link) => (
             <button
               key={link.path}
               onClick={() => navigate(link.path)}
-              className={`social-link text-sm hover:text-[#00FF94] transition-colors ${
+              className={`social-link text-lg hover:text-[#00FF94] transition-colors ${
                 currentPath === link.path ? 'text-[#00FF94]' : ''
               }`}
               onMouseEnter={() => setIsHovering(true)}

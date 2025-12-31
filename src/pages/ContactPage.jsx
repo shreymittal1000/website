@@ -108,7 +108,7 @@ export default function ContactPage({ setIsHovering }) {
                 </a>
 
                 <a
-                  href="https://instagram.com"
+                  href="https://instagram.com/shreymittal1000"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 bg-[#252525] hover:bg-[#333] rounded-lg transition-colors"

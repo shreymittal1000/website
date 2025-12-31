@@ -1,5 +1,5 @@
 import React from 'react';
-import { Linkedin, Instagram } from 'lucide-react';
+import { Linkedin, Instagram, Github } from 'lucide-react';
 
 export default function Footer({ setIsHovering }) {
   return (
@@ -10,6 +10,16 @@ export default function Footer({ setIsHovering }) {
             Last Updated - December 2025. Built with React.js so that I can teach myself frontend.
           </div>
           <div className="flex gap-6">
+            <a 
+              href="https://www.github.com/shreymittal1000/" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#00FF94] hover:opacity-80 transition-opacity"
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
+            >
+              <Github size={20} />
+            </a>
             <a 
               href="https://linkedin.com/in/shrey-mittal-101" 
               target="_blank"
