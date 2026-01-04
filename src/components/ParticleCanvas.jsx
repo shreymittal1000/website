@@ -23,7 +23,7 @@ export default function ParticleCanvas({ cursorPos }) {
         this.opacity = Math.random() * 0.5 + 0.2;
       }
 
-      update(mouseX, mouseY) {
+      update(mouseX, mouseY, allParticles) {
         const dx = this.x - mouseX;
         const dy = this.y - mouseY;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -35,6 +35,21 @@ export default function ParticleCanvas({ cursorPos }) {
           this.speedX += Math.cos(angle) * force * 0.5;
           this.speedY += Math.sin(angle) * force * 0.5;
         }
+
+        allParticles.forEach(otherParticle => {
+          if (otherParticle === this) return;
+          const pdx = this.x - otherParticle.x;
+          const pdy = this.y - otherParticle.y;
+          const pDistance = Math.sqrt(pdx * pdx + pdy * pdy);
+          const repelDistance = 100;
+
+          if (pDistance < repelDistance && pDistance > 0) {
+            const repelForce = (repelDistance - pDistance) / repelDistance;
+            const angle = Math.atan2(pdy, pdx);
+            this.speedX += Math.cos(angle) * repelForce * 0.3;
+            this.speedY += Math.sin(angle) * repelForce * 0.3;
+          }
+        });
 
         this.speedX *= 0.95;
         this.speedY *= 0.95;
@@ -56,7 +71,7 @@ export default function ParticleCanvas({ cursorPos }) {
       }
     }
 
-    const particleCount = 150;
+    const particleCount = 800;
     particlesRef.current = [];
     for (let i = 0; i < particleCount; i++) {
       particlesRef.current.push(new Particle());
@@ -86,7 +101,7 @@ export default function ParticleCanvas({ cursorPos }) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particlesRef.current.forEach(particle => {
-        particle.update(cursorPos.x, cursorPos.y);
+        particle.update(cursorPos.x, cursorPos.y, particlesRef.current);
         particle.draw();
       });
 
