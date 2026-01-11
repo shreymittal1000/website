@@ -19,7 +19,7 @@ export default function HomePage({ navigate, setIsHovering }) {
 
         <div className="mb-8 p-6 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg fade-in-up delay-3">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <div className="w-2 h-2 bg-[#00FF94] rounded-full animate-pulse" />
+            {/* <div className="w-2 h-2 bg-[#00FF94] rounded-full animate-pulse" /> */}
             <span className="text-sm font-medium text-[#00FF94]">Current Status</span>
           </div>
           <p className="text-white/90 mb-2">
@@ -30,7 +30,7 @@ export default function HomePage({ navigate, setIsHovering }) {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-6 justify-center fade-in-up delay-4">
+        {/* <div className="flex flex-wrap gap-6 justify-center fade-in-up delay-4">
           <button
             onClick={() => navigate('/projects')}
             className="px-8 py-4 bg-[#00FF94] text-black font-bold hover:bg-white transition-colors shadow-lg hover:shadow-[#00FF94]/50"
@@ -47,7 +47,7 @@ export default function HomePage({ navigate, setIsHovering }) {
           >
             Get in Touch
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
