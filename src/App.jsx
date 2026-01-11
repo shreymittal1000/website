@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import CustomCursor from './components/CustomCursor';
-import ParticleCanvas from './components/ParticleCanvas';
+// import ParticleCanvas from './components/ParticleCanvas';
+import BackgroundImage from './components/PhotoCanvas';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -50,7 +51,8 @@ export default function App() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       <CustomCursor cursorPos={cursorPos} isHovering={isHovering} />
-      <ParticleCanvas cursorPos={cursorPos} />
+      {/* <ParticleCanvas cursorPos={cursorPos} /> */}
+      <BackgroundImage />
 
       <div className="relative" style={{ zIndex: 10 }}>
         <Navigation 

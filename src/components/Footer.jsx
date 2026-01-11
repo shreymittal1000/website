@@ -3,10 +3,10 @@ import { Linkedin, Instagram, Github } from 'lucide-react';
 
 export default function Footer({ setIsHovering }) {
   return (
-    <footer className="relative z-10 border-t border-gray-800">
+    <footer className="relative z-10 border-t border-white/10 backdrop-blur-sm bg-black/20">
       <div className="max-w-6xl mx-auto px-8 py-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-gray-600">
+          <div className="text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             Last Updated - December 2025. Built with React.js so that I can teach myself frontend.
           </div>
           <div className="flex gap-6">

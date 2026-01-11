@@ -4,14 +4,14 @@ export default function AboutPage({ setIsHovering }) {
   return (
     <div className="page-enter min-h-screen px-8 py-32">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-6xl font-bold mb-12">
+        <h1 className="text-6xl font-bold mb-12 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
           ABOUT <span className="text-[#00FF94]">ME</span>
         </h1>
         
         <div className="space-y-8">
-          <div className="p-8 bg-[#151515] border-2 border-[#252525] rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-[#00FF94]">Who is this Shrey guy?</h2>
-            <div className="space-y-4 text-gray-400">
+          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4 text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Background</h2>
+            <div className="space-y-4 text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               <p>
                 I'm a Swiss-Indian tech dude currently living in Berlin.
                 I studied Computer Science at EPFL (BSc) and ETH Zurich (MSc),
@@ -39,9 +39,9 @@ export default function AboutPage({ setIsHovering }) {
             </div>
           </div>
 
-          <div className="p-8 bg-[#151515] border-2 border-[#252525] rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-[#00FF94]">When I'm Not Working</h2>
-            <div className="space-y-4 text-gray-400">
+          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4 text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">When I'm Not Coding</h2>
+            <div className="space-y-4 text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               <p>
                 You'll find me on the badminton court, cricket pitch, or hunched over a chessboard. I also love watching and playing football (the kind where you actually use your feet ;)). Basically, I'm always down to try new team sports—the more competitive, the better.
               </p>
@@ -51,9 +51,9 @@ export default function AboutPage({ setIsHovering }) {
             </div>
           </div>
 
-          <div className="p-8 bg-[#151515] border-2 border-[#252525] rounded-lg">
-            <h2 className="text-2xl font-bold mb-4 text-[#00FF94]">Languages</h2>
-            <p className="text-gray-400">
+          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+            <h2 className="text-2xl font-bold mb-4 text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Languages</h2>
+            <p className="text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               I speak Hindi, English, and French fluently. I can also confidently order at a döner place in German, which is basically the most important language skill in Switzerland.
             </p>
           </div>
