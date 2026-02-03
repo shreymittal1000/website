@@ -19,7 +19,6 @@ export default function HomePage({ navigate, setIsHovering }) {
 
         <div className="mb-8 p-6 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg fade-in-up delay-3">
           <div className="flex items-center justify-center gap-2 mb-2">
-            <div className="w-2 h-2 bg-[#00FF94] rounded-full animate-pulse" />
             <span className="text-sm font-medium text-[#00FF94]">Current Status</span>
           </div>
           <p className="text-white/90 mb-2">
