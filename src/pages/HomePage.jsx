@@ -29,7 +29,7 @@ export default function HomePage({ navigate, setIsHovering }) {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-6 justify-center fade-in-up delay-4">
+        {/* <div className="flex flex-wrap gap-6 justify-center fade-in-up delay-4">
           <button
             onClick={() => navigate('/projects')}
             className="px-8 py-4 bg-[#00FF94] text-black font-bold hover:bg-white transition-colors shadow-lg hover:shadow-[#00FF94]/50"
@@ -46,7 +46,7 @@ export default function HomePage({ navigate, setIsHovering }) {
           >
             Get in Touch
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

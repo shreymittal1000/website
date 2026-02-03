@@ -43,7 +43,9 @@ export default function AboutPage({ setIsHovering }) {
             <h2 className="text-2xl font-bold mb-4 text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">When I'm Not Coding</h2>
             <div className="space-y-4 text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               <p>
-                You'll find me on the badminton court, cricket pitch, or hunched over a chessboard. I also love watching and playing football (the kind where you actually use your feet ;)). Basically, I'm always down to try new team sports—the more competitive, the better.
+                You'll find me on the badminton court, cricket pitch, or crunching out some Lichess games.
+                I also love watching and playing football (the actual football, which you play with your feet).
+                I'm always down to try new team sports—the more competitive, the better.
               </p>
               <p>
                 In the kitchen, I experiment with wonky vegetarian dishes, treating recipes as gentle suggestions rather than strict rules. The results are... let's say "creative." I also have a soft spot for public speaking challenges, especially PowerPoint karaoke—there's something beautifully chaotic about presenting slides you've never seen before.
@@ -54,7 +56,7 @@ export default function AboutPage({ setIsHovering }) {
           <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
             <h2 className="text-2xl font-bold mb-4 text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Languages</h2>
             <p className="text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-              I speak Hindi, English, and French fluently. I can also confidently order at a döner place in German, which is basically the most important language skill in Switzerland.
+              I speak Hindi, English, and French fluently. I can also confidently order at a döner place in German.
             </p>
           </div>
         </div>
