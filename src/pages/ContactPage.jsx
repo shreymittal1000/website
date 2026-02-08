@@ -139,7 +139,7 @@ export default function ContactPage({ setIsHovering }) {
 
             <div className="p-6 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
               <p className="text-white/80 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-                Whether you want to chat about tech, discuss potential collaborations, or just talk about the latest badminton tournament—I'm all ears!
+                Whether you want to chat about tech, discuss potential collaborations, or just talk about the latest chess news, I'm all ears!
               </p>
             </div>
           </div>

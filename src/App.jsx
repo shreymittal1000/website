@@ -63,7 +63,7 @@ export default function App() {
 
         {currentPath === '/' && <HomePage navigate={navigate} setIsHovering={setIsHovering} />}
         {currentPath === '/about' && <AboutPage setIsHovering={setIsHovering} />}
-        {currentPath === '/projects' && <ProjectsPage setIsHovering={setIsHovering} />}
+        {/* // {currentPath === '/projects' && <ProjectsPage setIsHovering={setIsHovering} />} */}
         {currentPath === '/skills' && <SkillsPage setIsHovering={setIsHovering} />}
         {currentPath === '/blog' && <BlogPage setIsHovering={setIsHovering} />}
         {currentPath === '/contact' && <ContactPage setIsHovering={setIsHovering} />}
