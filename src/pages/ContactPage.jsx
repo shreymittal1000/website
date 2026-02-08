@@ -123,7 +123,7 @@ export default function ContactPage({ setIsHovering }) {
                 </a>
 
                 <a
-                  href="mailto:shrey@merantix.com"
+                  href="mailto:shreymittal1000@gmail.com"
                   className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
