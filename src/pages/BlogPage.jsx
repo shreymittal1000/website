@@ -1,28 +1,8 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
+import blogPosts from '../data/blogPosts';
 
-const blogPosts = [
-	{
-		title: 'Understanding Multi-Agent LLM Systems',
-		excerpt: 'Exploring how language models interact and coordinate in complex scenarios...',
-		date: 'Coming Soon',
-		tags: ['AI', 'Research'],
-	},
-	{
-		title: 'From Physics to CS: My Journey',
-		excerpt: 'Reflections on switching fields and what I learned along the way...',
-		date: 'Coming Soon',
-		tags: ['Personal', 'Education'],
-	},
-	{
-		title: 'Early-Stage VC: A Technical Perspective',
-		excerpt: 'How technical expertise shapes investment decisions...',
-		date: 'Coming Soon',
-		tags: ['VC', 'Tech'],
-	},
-];
-
-export default function BlogPage({ setIsHovering }) {
+export default function BlogPage({ navigate, setIsHovering }) {
 	return (
 		<div className="page-enter min-h-screen px-8 py-32">
 			<div className="max-w-4xl mx-auto">
@@ -34,9 +14,10 @@ export default function BlogPage({ setIsHovering }) {
 				</p>
 
 				<div className="space-y-6">
-					{blogPosts.map((post, i) => (
+					{blogPosts.map((post) => (
 						<div
-							key={i}
+							key={post.id}
+							onClick={() => navigate(`/blog/${post.id}`)}
 							className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 hover:border-[#00FF94] rounded-lg hover-lift cursor-pointer transition-all"
 							onMouseEnter={() => setIsHovering(true)}
 							onMouseLeave={() => setIsHovering(false)}
@@ -61,19 +42,19 @@ export default function BlogPage({ setIsHovering }) {
 							</p>
 
 							<div className="flex items-center justify-between">
-								<span className="text-sm text-white/60">{post.date}</span>
+								<div className="flex items-center gap-4 text-sm text-white/60">
+									<span>{post.date}</span>
+									<span className="flex items-center gap-1">
+										<Clock size={14} />
+										{post.readTime}
+									</span>
+								</div>
 								<span className="text-sm font-medium flex items-center gap-1 text-[#00FF94]">
-									Read more <ExternalLink size={14} />
+									Read more <ArrowRight size={14} />
 								</span>
 							</div>
 						</div>
 					))}
-				</div>
-
-				<div className="mt-12 p-8 backdrop-blur-sm bg-black/30 border border-dashed border-white/20 rounded-lg text-center">
-					<p className="text-white/80 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-						📝 Blog posts coming soon! Check back later for updates.
-					</p>
 				</div>
 			</div>
 		</div>

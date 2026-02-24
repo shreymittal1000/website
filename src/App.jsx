@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
 import SkillsPage from './pages/SkillsPage';
 import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import ContactPage from './pages/ContactPage';
 import './styles/animations.css';
 
@@ -63,9 +64,16 @@ export default function App() {
 
         {currentPath === '/' && <HomePage navigate={navigate} setIsHovering={setIsHovering} />}
         {currentPath === '/about' && <AboutPage setIsHovering={setIsHovering} />}
-        {currentPath === '/projects' && <ProjectsPage setIsHovering={setIsHovering} />}
+        {/* // {currentPath === '/projects' && <ProjectsPage setIsHovering={setIsHovering} />} */}
         {currentPath === '/skills' && <SkillsPage setIsHovering={setIsHovering} />}
-        {currentPath === '/blog' && <BlogPage setIsHovering={setIsHovering} />}
+        {currentPath === '/blog' && <BlogPage navigate={navigate} setIsHovering={setIsHovering} />}
+        {currentPath.startsWith('/blog/') && (
+          <BlogPostPage 
+            postId={currentPath.split('/blog/')[1]} 
+            navigate={navigate} 
+            setIsHovering={setIsHovering} 
+          />
+        )}
         {currentPath === '/contact' && <ContactPage setIsHovering={setIsHovering} />}
 
         <Footer setIsHovering={setIsHovering} />
