@@ -1,7 +1,7 @@
 ---
 id: physics-to-cs-journey
-title: From Physics to Computer Science: My Unconventional Journey
-excerpt: Reflections on switching fields and what I learned along the way—from quantum mechanics to machine learning.
+title: "From Physics to Computer Science: My Unconventional Journey"
+excerpt: "Reflections on switching fields and what I learned along the way—from quantum mechanics to machine learning."
 date: February 5, 2026
 ---
 
