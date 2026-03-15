@@ -9,7 +9,7 @@ export default function AboutPage({ setIsHovering }) {
         </h1>
         
         <div className="space-y-8">
-          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-none">
             <h2 className="text-2xl font-bold mb-4 text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Background</h2>
             <div className="space-y-4 text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               <p>
@@ -33,13 +33,11 @@ export default function AboutPage({ setIsHovering }) {
                 I've also had the privilege of having lived on three different continents:
                 Europe (CH, DE), North America (CA), and Asia (IN). Having lived in many different places and going
                 to international schools has led to me having many close friends who are spread out across the globe.
-                I also speak 3 languages: English, French and Hindi.;
-                and can order a döner in German, which is arguably the most important skill to have anywhere :D
               </p>
             </div>
           </div>
 
-          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-none">
             <h2 className="text-2xl font-bold mb-4 text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">When I'm Not Coding</h2>
             <div className="space-y-4 text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               <p>
@@ -53,7 +51,7 @@ export default function AboutPage({ setIsHovering }) {
             </div>
           </div>
 
-          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-none">
             <h2 className="text-2xl font-bold mb-4 text-[#00FF94] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Languages</h2>
             <p className="text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
               I speak Hindi, English, and French fluently. I can also confidently order at a döner place in German.

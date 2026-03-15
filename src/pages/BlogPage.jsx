@@ -18,7 +18,7 @@ export default function BlogPage({ navigate, setIsHovering }) {
 						<div
 							key={post.id}
 							onClick={() => navigate(`/blog/${post.id}`)}
-							className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 hover:border-[#00FF94] rounded-lg hover-lift cursor-pointer transition-all"
+							className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 hover:border-[#00FF94] rounded-none hover-lift cursor-pointer transition-all"
 							onMouseEnter={() => setIsHovering(true)}
 							onMouseLeave={() => setIsHovering(false)}
 						>

@@ -1,6 +1,52 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import { getBlogPostById } from '../data/blogPosts';
+
+const markdownComponents = {
+	h1: ({ children }) => (
+		<h1 className="text-5xl font-bold mb-8 mt-12 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+			{children}
+		</h1>
+	),
+	h2: ({ children }) => (
+		<h2 className="text-3xl font-bold mb-4 mt-10 text-[#00FF94] drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+			{children}
+		</h2>
+	),
+	h3: ({ children }) => (
+		<h3 className="text-2xl font-bold mb-3 mt-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+			{children}
+		</h3>
+	),
+	p: ({ children }) => (
+		<p className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+			{children}
+		</p>
+	),
+	ul: ({ children }) => (
+		<ul className="mb-6 list-disc list-inside space-y-2 text-lg text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+			{children}
+		</ul>
+	),
+	ol: ({ children }) => (
+		<ol className="mb-6 list-decimal list-inside space-y-2 text-lg text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+			{children}
+		</ol>
+	),
+	li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+	strong: ({ children }) => (
+		<strong className="font-bold text-white/95">{children}</strong>
+	),
+	em: ({ children }) => (
+		<em className="italic text-white/80">{children}</em>
+	),
+	code: ({ children }) => (
+		<code className="px-1.5 py-0.5 bg-white/10 text-[#00FF94] rounded text-sm font-mono">
+			{children}
+		</code>
+	),
+};
 
 export default function BlogPostPage({ postId, navigate, setIsHovering }) {
 	const post = getBlogPostById(postId);
@@ -25,114 +71,6 @@ export default function BlogPostPage({ postId, navigate, setIsHovering }) {
 			</div>
 		);
 	}
-
-	// Convert markdown-style content to JSX
-	const renderContent = () => {
-		const lines = post.content.trim().split('\n');
-		const elements = [];
-		let currentParagraph = [];
-
-		lines.forEach((line, index) => {
-			// Headers
-			if (line.startsWith('# ')) {
-				if (currentParagraph.length > 0) {
-					elements.push(
-						<p key={`p-${index}`} className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-							{currentParagraph.join(' ')}
-						</p>
-					);
-					currentParagraph = [];
-				}
-				elements.push(
-					<h1 key={index} className="text-5xl font-bold mb-8 mt-12 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-						{line.slice(2)}
-					</h1>
-				);
-			} else if (line.startsWith('## ')) {
-				if (currentParagraph.length > 0) {
-					elements.push(
-						<p key={`p-${index}`} className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-							{currentParagraph.join(' ')}
-						</p>
-					);
-					currentParagraph = [];
-				}
-				elements.push(
-					<h2 key={index} className="text-3xl font-bold mb-4 mt-10 text-[#00FF94] drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-						{line.slice(3)}
-					</h2>
-				);
-			} else if (line.startsWith('### ')) {
-				if (currentParagraph.length > 0) {
-					elements.push(
-						<p key={`p-${index}`} className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-							{currentParagraph.join(' ')}
-						</p>
-					);
-					currentParagraph = [];
-				}
-				elements.push(
-					<h3 key={index} className="text-2xl font-bold mb-3 mt-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-						{line.slice(4)}
-					</h3>
-				);
-			} else if (line.startsWith('**') && line.endsWith('**')) {
-				// Bold standalone lines (subheadings)
-				if (currentParagraph.length > 0) {
-					elements.push(
-						<p key={`p-${index}`} className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-							{currentParagraph.join(' ')}
-						</p>
-					);
-					currentParagraph = [];
-				}
-				elements.push(
-					<p key={index} className="font-bold mb-3 text-xl text-white/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-						{line.slice(2, -2)}
-					</p>
-				);
-			} else if (line.trim() === '') {
-				// Empty line - end current paragraph
-				if (currentParagraph.length > 0) {
-					elements.push(
-						<p key={`p-${index}`} className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-							{currentParagraph.join(' ')}
-						</p>
-					);
-					currentParagraph = [];
-				}
-			} else if (line.startsWith('*') && line.endsWith('*') && !line.startsWith('**')) {
-				// Italic (emphasis) - often used for CTAs or notes
-				if (currentParagraph.length > 0) {
-					elements.push(
-						<p key={`p-${index}`} className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-							{currentParagraph.join(' ')}
-						</p>
-					);
-					currentParagraph = [];
-				}
-				elements.push(
-					<p key={index} className="italic mb-6 text-lg text-white/80 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-						{line.slice(1, -1)}
-					</p>
-				);
-			} else {
-				// Regular text
-				currentParagraph.push(line);
-			}
-		});
-
-		// Add any remaining paragraph
-		if (currentParagraph.length > 0) {
-			elements.push(
-				<p key="final-p" className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-					{currentParagraph.join(' ')}
-				</p>
-			);
-		}
-
-		return elements;
-	};
 
 	return (
 		<div className="page-enter min-h-screen px-8 py-32">
@@ -178,9 +116,9 @@ export default function BlogPostPage({ postId, navigate, setIsHovering }) {
 				</div>
 
 				{/* Content */}
-				<article className="backdrop-blur-sm bg-black/20 border border-white/10 rounded-lg p-8 md:p-12">
+				<article className="backdrop-blur-sm bg-black/20 border border-white/10 rounded-none p-8 md:p-12">
 					<div className="prose prose-invert max-w-none">
-						{renderContent()}
+						<ReactMarkdown components={markdownComponents}>{post.content}</ReactMarkdown>
 					</div>
 				</article>
 

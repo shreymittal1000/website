@@ -13,7 +13,7 @@ export default function ProjectsPage({ setIsHovering }) {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Master's Thesis - Featured */}
           <div 
-            className="md:col-span-2 p-8 backdrop-blur-sm bg-black/30 border-2 border-[#00FF94] rounded-lg hover-lift"
+            className="md:col-span-2 p-8 backdrop-blur-sm bg-black/30 border-2 border-[#00FF94] rounded-none hover-lift"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
           >
@@ -49,7 +49,7 @@ export default function ProjectsPage({ setIsHovering }) {
                 <Download size={20} />
                 Download PDF
               </a>
-              {/* <div className="px-6 py-3 backdrop-blur-sm bg-white/10 text-white/80 rounded-lg">
+              {/* <div className="px-6 py-3 backdrop-blur-sm bg-white/10 text-white/80 rounded-none">
                 📝 In submission to conferences
               </div> */}
             </div>
@@ -62,7 +62,7 @@ export default function ProjectsPage({ setIsHovering }) {
           ].map((project, i) => (
             <div 
               key={i}
-              className="p-8 backdrop-blur-sm bg-black/30 border border-dashed border-white/20 rounded-lg opacity-60"
+              className="p-8 backdrop-blur-sm bg-black/30 border border-dashed border-white/20 rounded-none opacity-60"
             >
               <div className="inline-block px-3 py-1 backdrop-blur-sm bg-white/10 text-white/60 rounded-full text-sm font-medium mb-4">
                 {project.status}

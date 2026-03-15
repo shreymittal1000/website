@@ -32,7 +32,7 @@ export default function ContactPage({ setIsHovering }) {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+          <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-none">
             <h2 className="text-2xl font-bold mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Send a Message</h2>
             
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -44,7 +44,7 @@ export default function ContactPage({ setIsHovering }) {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 backdrop-blur-sm bg-black/50 border border-white/20 rounded-lg text-white focus:border-[#00FF94] outline-none transition-colors"
+                  className="w-full px-4 py-3 backdrop-blur-sm bg-black/50 border border-white/20 rounded-none text-white focus:border-[#00FF94] outline-none transition-colors"
                   placeholder="Your name"
                 />
               </div>
@@ -57,7 +57,7 @@ export default function ContactPage({ setIsHovering }) {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 backdrop-blur-sm bg-black/50 border border-white/20 rounded-lg text-white focus:border-[#00FF94] outline-none transition-colors"
+                  className="w-full px-4 py-3 backdrop-blur-sm bg-black/50 border border-white/20 rounded-none text-white focus:border-[#00FF94] outline-none transition-colors"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -70,7 +70,7 @@ export default function ContactPage({ setIsHovering }) {
                   onChange={handleChange}
                   required
                   rows="5"
-                  className="w-full px-4 py-3 backdrop-blur-sm bg-black/50 border border-white/20 rounded-lg text-white focus:border-[#00FF94] outline-none transition-colors"
+                  className="w-full px-4 py-3 backdrop-blur-sm bg-black/50 border border-white/20 rounded-none text-white focus:border-[#00FF94] outline-none transition-colors"
                   placeholder="What would you like to talk about?"
                 />
               </div>
@@ -88,7 +88,7 @@ export default function ContactPage({ setIsHovering }) {
 
           {/* Contact Links */}
           <div className="space-y-6">
-            <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+            <div className="p-8 backdrop-blur-sm bg-black/30 border border-white/10 rounded-none">
               <h2 className="text-2xl font-bold mb-6 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Connect With Me</h2>
               
               <div className="space-y-4">
@@ -96,7 +96,7 @@ export default function ContactPage({ setIsHovering }) {
                   href="https://linkedin.com/in/shrey-mittal-101"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                  className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-none transition-colors"
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
                 >
@@ -111,7 +111,7 @@ export default function ContactPage({ setIsHovering }) {
                   href="https://instagram.com/shreymittal1000"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                  className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-none transition-colors"
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
                 >
@@ -124,7 +124,7 @@ export default function ContactPage({ setIsHovering }) {
 
                 <a
                   href="mailto:shreymittal1000@gmail.com"
-                  className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                  className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-none transition-colors"
                   onMouseEnter={() => setIsHovering(true)}
                   onMouseLeave={() => setIsHovering(false)}
                 >
@@ -137,7 +137,7 @@ export default function ContactPage({ setIsHovering }) {
               </div>
             </div>
 
-            <div className="p-6 backdrop-blur-sm bg-black/30 border border-white/10 rounded-lg">
+            <div className="p-6 backdrop-blur-sm bg-black/30 border border-white/10 rounded-none">
               <p className="text-white/80 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                 Whether you want to chat about tech, discuss potential collaborations, or just talk about the latest chess news, I'm all ears!
               </p>

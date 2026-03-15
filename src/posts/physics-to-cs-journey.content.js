@@ -1,11 +1,16 @@
-export default {
-  id: 'physics-to-cs-journey',
-  title: 'From Physics to Computer Science: My Unconventional Journey',
-  excerpt: 'Reflections on switching fields and what I learned along the way—from quantum mechanics to machine learning.',
-  date: 'February 5, 2026',
-  readTime: '6 min read',
-  tags: ['Personal', 'Education', 'Career'],
-  content: `
+// Markdown content for physics-to-cs-journey – edit the .md file and sync here, or use the .md with a working glob
+export default `---
+id: physics-to-cs-journey
+title: From Physics to Computer Science: My Unconventional Journey
+excerpt: Reflections on switching fields and what I learned along the way—from quantum mechanics to machine learning.
+date: February 5, 2026
+readTime: 6 min read
+tags:
+  - Personal
+  - Education
+  - Career
+---
+
 # From Physics to Computer Science: My Unconventional Journey
 
 Making the transition from physics to computer science wasn't something I planned from the start. It happened gradually, driven by curiosity and a realization that the problems I found most compelling lived at the intersection of both fields.
@@ -74,5 +79,4 @@ If you're considering a transition from physics (or any other field) to computer
 The future of technology will be built by people who can bridge multiple disciplines. Your unique background could be exactly what's needed to solve the next generation of problems.
 
 *Are you making a similar transition? I'd love to hear about your experience. Feel free to reach out!*
-  `
-};
+`;

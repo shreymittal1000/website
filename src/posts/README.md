@@ -1,59 +1,55 @@
 # Blog Posts
 
-This directory contains individual blog post files. Each post is its own JavaScript module that exports a post object.
+This directory contains blog posts as **Markdown files** with YAML frontmatter. Posts are loaded at build time via Vite's glob import and parsed with `gray-matter`; the body is rendered with `react-markdown`.
 
 ## Adding a New Blog Post
 
-1. Create a new `.js` file in this directory with a descriptive filename (e.g., `my-new-post.js`)
+1. Create a new `.md` file in this directory with a descriptive filename (e.g., `my-new-post.md`).
 
-2. Export a post object with the following structure:
+2. Add YAML frontmatter at the top, then your markdown content:
 
-```javascript
-export default {
-  id: 'my-new-post',           // Unique ID (usually matches filename)
-  title: 'My New Post Title',  // Post title
-  excerpt: 'Brief description...', // Short excerpt for the listing page
-  date: 'Month DD, YYYY',      // Publication date
-  readTime: 'X min read',      // Estimated reading time
-  tags: ['Tag1', 'Tag2'],      // Array of tags
-  content: `
-    # Post Title
-    
-    Your post content here in markdown-style format...
-  `
-};
+```markdown
+---
+id: my-new-post
+title: My New Post Title
+excerpt: Brief description for the listing page.
+date: February 9, 2026
+readTime: 5 min read
+tags:
+  - Tag1
+  - Tag2
+---
+
+# Post Title
+
+Your post content here in standard markdown...
 ```
 
-3. Import your new post in `index.js`:
+3. Register the post in `src/data/blogPosts.js`: add a new line `import myNewPostRaw from '../posts/my-new-post.md?raw';` and add `parsePost(myNewPostRaw)` to the `posts` array.
 
-```javascript
-import myNewPost from './my-new-post';
-```
+## Frontmatter Fields
 
-4. Add it to the `posts` array in `index.js`:
-
-```javascript
-export const posts = [
-  myNewPost,
-  // ... other posts
-];
-```
+| Field     | Required | Description                                      |
+|----------|----------|--------------------------------------------------|
+| `id`     | Yes      | Unique slug (used in URLs; e.g. `/blog/my-new-post`) |
+| `title`  | Yes      | Post title                                       |
+| `excerpt`| Yes      | Short summary for the blog listing               |
+| `date`   | Yes      | Publication date (e.g. `February 9, 2026`)       |
+| `readTime` | Yes    | Reading time (e.g. `5 min read`)                 |
+| `tags`   | Yes      | List of tags (YAML array)                        |
 
 ## Content Formatting
 
-The content field supports the following markdown-style formatting:
+Use standard Markdown in the body:
 
-- `# Header` - Main heading (H1)
-- `## Header` - Section heading (H2)
-- `### Header` - Subsection heading (H3)
-- `**Bold text**` - Bold standalone lines (subheadings)
-- `*Italic text*` - Italic text (usually for emphasis/CTAs)
-- Regular paragraphs - Separated by blank lines
+- `#`, `##`, `###` for headings
+- `**bold**`, `*italic*`
+- `-` or `*` for unordered lists, `1.` for ordered lists
+- `` `code` `` for inline code
+- Blank lines between paragraphs
 
 ## Tips
 
-- Keep post IDs lowercase with hyphens
-- Use meaningful filenames that match the post ID
-- Update the date when publishing
-- Keep excerpts concise (1-2 sentences)
-- Add 2-4 relevant tags per post
+- Keep `id` lowercase with hyphens; it becomes the URL slug.
+- Use a filename that matches the post `id` (e.g. `my-new-post.md`).
+- Posts are sorted by `date` descending on the blog listing page.
