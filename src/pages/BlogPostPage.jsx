@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
-import { getBlogPostById } from '../data/blogPosts';
+import { getBlogPostById, loadPostContent } from '../data/blogPosts';
 
 const markdownComponents = {
 	h1: ({ children }) => (
@@ -50,6 +50,20 @@ const markdownComponents = {
 
 export default function BlogPostPage({ postId, navigate, setIsHovering }) {
 	const post = getBlogPostById(postId);
+	const [content, setContent] = useState(() => post?.content ?? '');
+
+	useEffect(() => {
+		if (!post) return;
+		if (post.content) {
+			setContent(post.content);
+			return;
+		}
+		let cancelled = false;
+		loadPostContent(post.id).then((body) => {
+			if (!cancelled) setContent(body || '');
+		});
+		return () => { cancelled = true; };
+	}, [post?.id, post?.content]);
 
 	if (!post) {
 		return (
@@ -118,7 +132,11 @@ export default function BlogPostPage({ postId, navigate, setIsHovering }) {
 				{/* Content */}
 				<article className="backdrop-blur-sm bg-black/20 border border-white/10 rounded-none p-8 md:p-12">
 					<div className="prose prose-invert max-w-none">
-						<ReactMarkdown components={markdownComponents}>{post.content}</ReactMarkdown>
+						{content ? (
+							<ReactMarkdown components={markdownComponents}>{content}</ReactMarkdown>
+						) : (
+							<p className="text-white/60">Loading…</p>
+						)}
 					</div>
 				</article>
 

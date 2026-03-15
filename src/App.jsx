@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import CustomCursor from './components/CustomCursor';
 // import ParticleCanvas from './components/ParticleCanvas';
@@ -8,11 +8,10 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
 import SkillsPage from './pages/SkillsPage';
+import BlogPage from './pages/BlogPage';
+import BlogPostPage from './pages/BlogPostPage';
 import ContactPage from './pages/ContactPage';
 import './styles/animations.css';
-
-const BlogPage = lazy(() => import('./pages/BlogPage'));
-const BlogPostPage = lazy(() => import('./pages/BlogPostPage'));
 
 // Simple hash-based router
 const useHashRouter = () => {
@@ -67,19 +66,13 @@ export default function App() {
         {currentPath === '/about' && <AboutPage setIsHovering={setIsHovering} />}
         {/* // {currentPath === '/projects' && <ProjectsPage setIsHovering={setIsHovering} />} */}
         {currentPath === '/skills' && <SkillsPage setIsHovering={setIsHovering} />}
-        {currentPath === '/blog' && (
-          <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-white/80">Loading...</div>}>
-            <BlogPage navigate={navigate} setIsHovering={setIsHovering} />
-          </Suspense>
-        )}
+        {currentPath === '/blog' && <BlogPage navigate={navigate} setIsHovering={setIsHovering} />}
         {currentPath.startsWith('/blog/') && (
-          <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-white/80">Loading...</div>}>
-            <BlogPostPage 
-              postId={currentPath.split('/blog/')[1]} 
-              navigate={navigate} 
-              setIsHovering={setIsHovering} 
-            />
-          </Suspense>
+          <BlogPostPage 
+            postId={currentPath.split('/blog/')[1]} 
+            navigate={navigate} 
+            setIsHovering={setIsHovering} 
+          />
         )}
         {currentPath === '/contact' && <ContactPage setIsHovering={setIsHovering} />}
 

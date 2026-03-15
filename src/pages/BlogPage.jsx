@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowRight, Clock } from 'lucide-react';
 import blogPosts from '../data/blogPosts';
 
+const posts = Array.isArray(blogPosts) ? blogPosts : [];
+
 export default function BlogPage({ navigate, setIsHovering }) {
 	return (
 		<div className="page-enter min-h-screen px-8 py-32">
@@ -14,7 +16,7 @@ export default function BlogPage({ navigate, setIsHovering }) {
 				</p>
 
 				<div className="space-y-6">
-					{blogPosts.map((post) => (
+					{posts.map((post) => (
 						<div
 							key={post.id}
 							onClick={() => navigate(`/blog/${post.id}`)}
