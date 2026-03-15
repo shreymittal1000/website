@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { ArrowLeft, Clock, Calendar } from 'lucide-react';
-import { getBlogPostById, loadPostContent } from '../data/blogPosts';
+import { ArrowLeft, Calendar } from 'lucide-react';
+import { getBlogPostById } from '../data/blogPosts';
 
 const markdownComponents = {
 	h1: ({ children }) => (
@@ -50,20 +50,6 @@ const markdownComponents = {
 
 export default function BlogPostPage({ postId, navigate, setIsHovering }) {
 	const post = getBlogPostById(postId);
-	const [content, setContent] = useState(() => post?.content ?? '');
-
-	useEffect(() => {
-		if (!post) return;
-		if (post.content) {
-			setContent(post.content);
-			return;
-		}
-		let cancelled = false;
-		loadPostContent(post.id).then((body) => {
-			if (!cancelled) setContent(body || '');
-		});
-		return () => { cancelled = true; };
-	}, [post?.id, post?.content]);
 
 	if (!post) {
 		return (
@@ -100,43 +86,21 @@ export default function BlogPostPage({ postId, navigate, setIsHovering }) {
 					Back to Blog
 				</button>
 
-				{/* Tags */}
-				<div className="flex flex-wrap gap-2 mb-6">
-					{post.tags.map((tag) => (
-						<span
-							key={tag}
-							className="px-3 py-1 backdrop-blur-sm bg-white/10 text-[#00FF94] rounded-full text-sm"
-						>
-							{tag}
-						</span>
-					))}
-				</div>
-
 				{/* Title */}
 				<h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
 					{post.title}
 				</h1>
 
-				{/* Meta info */}
-				<div className="flex flex-wrap gap-6 mb-12 text-white/70">
-					<div className="flex items-center gap-2">
-						<Calendar size={18} />
-						<span>{post.date}</span>
-					</div>
-					<div className="flex items-center gap-2">
-						<Clock size={18} />
-						<span>{post.readTime}</span>
-					</div>
+				{/* Date */}
+				<div className="flex items-center gap-2 mb-12 text-white/70">
+					<Calendar size={18} />
+					<span>{post.date}</span>
 				</div>
 
 				{/* Content */}
 				<article className="backdrop-blur-sm bg-black/20 border border-white/10 rounded-none p-8 md:p-12">
 					<div className="prose prose-invert max-w-none">
-						{content ? (
-							<ReactMarkdown components={markdownComponents}>{content}</ReactMarkdown>
-						) : (
-							<p className="text-white/60">Loading…</p>
-						)}
+						<ReactMarkdown components={markdownComponents}>{post.content || ''}</ReactMarkdown>
 					</div>
 				</article>
 

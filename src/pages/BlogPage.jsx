@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import blogPosts from '../data/blogPosts';
 
 const posts = Array.isArray(blogPosts) ? blogPosts : [];
@@ -24,17 +24,6 @@ export default function BlogPage({ navigate, setIsHovering }) {
 							onMouseEnter={() => setIsHovering(true)}
 							onMouseLeave={() => setIsHovering(false)}
 						>
-							<div className="flex flex-wrap gap-2 mb-3">
-								{post.tags.map((tag) => (
-									<span
-										key={tag}
-										className="px-3 py-1 backdrop-blur-sm bg-white/10 text-[#00FF94] rounded-full text-sm"
-									>
-										{tag}
-									</span>
-								))}
-							</div>
-
 							<h2 className="text-2xl font-bold mb-3 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
 								{post.title}
 							</h2>
@@ -44,13 +33,7 @@ export default function BlogPage({ navigate, setIsHovering }) {
 							</p>
 
 							<div className="flex items-center justify-between">
-								<div className="flex items-center gap-4 text-sm text-white/60">
-									<span>{post.date}</span>
-									<span className="flex items-center gap-1">
-										<Clock size={14} />
-										{post.readTime}
-									</span>
-								</div>
+								<span className="text-sm text-white/60">{post.date}</span>
 								<span className="text-sm font-medium flex items-center gap-1 text-[#00FF94]">
 									Read more <ArrowRight size={14} />
 								</span>

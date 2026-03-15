@@ -1,6 +1,19 @@
 # Blog Posts
 
-This directory contains blog posts as **Markdown files** with YAML frontmatter. Posts are loaded at build time via Vite's glob import and parsed with `gray-matter`; the body is rendered with `react-markdown`.
+This directory contains blog posts as **Markdown files** with YAML frontmatter. A build script (`scripts/embed-posts.js`) reads these files and inlines the body into `src/data/postBodies.js` so the app can render them.
+
+## Updating an existing post
+
+1. Edit the `.md` file (e.g. `llm_start_chat_blog.md`) — change the body and/or frontmatter (title, excerpt, date, tags).
+2. Regenerate the embedded content:
+   ```bash
+   node scripts/embed-posts.js
+   ```
+   Or run a full build (it runs this script first):
+   ```bash
+   npm run build
+   ```
+3. Refresh the site. Don’t edit `postBodies.js` or the `.content.js` files by hand; they’re generated or legacy.
 
 ## Adding a New Blog Post
 
@@ -14,10 +27,6 @@ id: my-new-post
 title: My New Post Title
 excerpt: Brief description for the listing page.
 date: February 9, 2026
-readTime: 5 min read
-tags:
-  - Tag1
-  - Tag2
 ---
 
 # Post Title
@@ -25,7 +34,7 @@ tags:
 Your post content here in standard markdown...
 ```
 
-3. Register the post in `src/data/blogPosts.js`: add a new line `import myNewPostRaw from '../posts/my-new-post.md?raw';` and add `parsePost(myNewPostRaw)` to the `posts` array.
+3. Register the post in `src/data/blogPosts.js`: add an entry to the `posts` array with `id`, `title`, `excerpt`, `date`, and `content: postBodies['my-new-post'] ?? ''`. Add the filename to `scripts/embed-posts.js` in the `postFiles` array. Run `node scripts/embed-posts.js` (or `npm run build`) to regenerate `src/data/postBodies.js`.
 
 ## Frontmatter Fields
 
@@ -35,8 +44,6 @@ Your post content here in standard markdown...
 | `title`  | Yes      | Post title                                       |
 | `excerpt`| Yes      | Short summary for the blog listing               |
 | `date`   | Yes      | Publication date (e.g. `February 9, 2026`)       |
-| `readTime` | Yes    | Reading time (e.g. `5 min read`)                 |
-| `tags`   | Yes      | List of tags (YAML array)                        |
 
 ## Content Formatting
 

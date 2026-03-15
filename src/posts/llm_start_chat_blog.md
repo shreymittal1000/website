@@ -1,280 +1,66 @@
 ---
 id: llm-start-chat-blog
 title: When You Tell Two LLMs to "Start a Chat"
-excerpt: I let two LLMs talk with the prompt "Start a chat." The results were bizarre — university websites, legal disclaimers, and zero actual conversation.
+excerpt: I let two DeepSeek-V3 models talk with the prompt "Start a chat." The results were bizarre — university websites, legal disclaimers, and zero actual conversation.
 date: March 9, 2026
-readTime: 8 min read
-tags:
-  - AI
-  - Research
-  - LLMs
 ---
 
-# When You Tell Two LLMs to “Start a Chat”
+When You Tell Two LLMs to "Start a Chat"
 
-I discovered this bug — or behavior, depending on how charitable you’re feeling — by accident.
+I found this by accident.
 
-I’m currently running experiments for my master’s thesis where I let two large language models talk to each other. The goal is to study how models behave in **finite dialogues** before making strategic decisions in economic games. The setup is simple:
+A while back I was doing research on how large language models behave in finite dialogues before making strategic decisions in economic games. The setup was pretty minimal: two DeepSeek-V3 agents, a fixed number of turns, a simple Python loop handling the API calls, temperature set to 0 for determinism. Each agent would get the other's last message appended to its conversation history and respond. Nothing fancy.
 
-- two LLM agents  
-- a fixed number of turns  
-- minimal system prompts  
-- temperature = 0 for determinism  
+The loop looked roughly like this:
 
-In one part of the experiment, I didn’t want to bias the conversation at all. So the prompt I gave both models was intentionally vague:
+```python
+messages_a = [{"role": "user", "content": initial_prompt}]
+messages_b = []
 
-> **“Start a chat.”**
+for turn in range(max_turns):
+    response_a = call_api(messages_a)
+    messages_a.append({"role": "assistant", "content": response_a})
+    messages_b.append({"role": "user", "content": response_a})
 
-No topic.  
-No instructions.  
-No roles.
-
-Just talk.
-
-I expected small talk. Maybe a polite introduction. Something like:
-
-*“Hi, how are you?”*
-
-Instead, I got… this.
-
----
-
-# The First Conversation Was a University Website
-
-The first agent opened with:
-
-> “1-800-4-ASBURY  
->  
-> # Asbury University  
->  
-> Location: Wilmore, Kentucky  
-> Founded: 1890  
-> Enrollment: 1,600…”
-
-It proceeded to generate what looked exactly like a **full informational page for Asbury University**: quick facts, history, mission statement, athletics, notable alumni.
-
-The second agent responded the way a well-trained assistant would:
-
-> “Here’s a concise summary of Asbury University in Wilmore, Kentucky.”
-
-Then the first agent replied with a slightly more polished version.
-
-Then the second agent summarized that.
-
-Then the first agent rewrote it again.
-
-The two models had spontaneously invented a **content editing workflow**. No conversation. Just endless iterative polishing of a university profile that nobody asked for.
-
-I assumed this was a one-off glitch.
-
-So I ran another experiment.
-
----
-
-# The Next Conversation Became a Law Firm Advertisement
-
-This time the conversation began with:
-
-> “1-800-4-ASBESTOS  
->  
-> # Asbestos Exposure in the Military”
-
-Within seconds, the two models were collaboratively producing a **mesothelioma legal landing page**.
-
-Sections appeared covering:
-
-- Navy asbestos exposure  
-- mesothelioma risk for veterans  
-- VA disability compensation  
-- asbestos trust funds  
-- legal claims  
-
-Eventually the conversation ended with a call to action:
-
-> “Call Today for Help with Your VA Claim:  
-> 1-800-4-ASBESTOS.”
-
-Again, nobody had mentioned asbestos.
-
-The entire conversation had emerged from the prompt:
-
-> **“Start a chat.”**
-
-At this point I started digging through the logs.
-
-And things got even stranger.
-
----
-
-# The Infinite Heading Collapse
-
-In one run the model produced a message that looked like this:
-
-```
-# Asbury University
-# Asbury University
-# Asbury University
-# Asbury University
-# Asbury University
+    response_b = call_api(messages_b)
+    messages_b.append({"role": "assistant", "content": response_b})
+    messages_a.append({"role": "user", "content": response_b})
 ```
 
-Hundreds of times.
+At one point I didn't want to bias the conversation at all, so I gave both models the most open-ended prompt I could think of.
 
-Just headings. Repeated endlessly.
+"Start a chat."
 
-Then, in the middle of the English text, something else appeared:
+No topic, no roles, nothing. I expected small talk. Maybe a polite hello. What I got instead was a full informational page for Asbury University in Wilmore, Kentucky. Founded 1890, enrollment 1600, athletics, notable alumni, the whole thing. The second model responded by summarizing it. The first rewrote it slightly. The second summarized that. They just kept going, two models collaboratively polishing a university profile that nobody asked for, in perfect iterative loop.
 
-```
-极速赛车开奖结果官网
-```
+I had no idea what I was looking at.
 
-Which roughly translates to:
+So I ran it again.
 
-**“Fast Racing Results Official Website.”**
+This time the conversation opened with "1-800-4-ASBESTOS" and within a few exchanges the two models were jointly producing a mesothelioma legal landing page. Navy asbestos exposure, VA disability compensation, asbestos trust funds, the works. It ended with a call to action to phone a lawyer. All from the prompt "start a chat."
 
-So the model had suddenly inserted **Chinese racing or gambling site spam** into a loop about a Kentucky university.
+At that point I just started laughing and ran more experiments.
 
-The other agent tried to interpret the message, politely explaining that the Chinese text might refer to racing results.
+One run produced a message that was just the heading "Asbury University" repeated hundreds of times, and then, in the middle of it, a line of Chinese text that roughly translates to "Fast Racing Results Official Website." The other agent politely tried to explain what the Chinese meant, as if that was the useful response to give.
 
-As if that helped.
+In another run one of the models just switched to Chinese mid-conversation and started explaining Asbury University in Mandarin. No translation prompt, no instruction. The other model went along with it.
 
----
+After going through enough logs the pattern became pretty clear, and it has a fairly straightforward explanation.
 
-# Then the Models Started Speaking Chinese
+The phrase "start a chat" appears all over the web as the opening line of embedded chat widgets, customer support interfaces, and live assistant prompts. DeepSeek-V3 was trained on a large multilingual web corpus, and a meaningful chunk of that corpus almost certainly includes scraped pages where "start a chat" sits right above a wall of informational content. So when the model sees that prompt at the start of a conversation with no other context, it is not really treating it as an instruction to have a conversation. It is pattern-matching to the document context in which that phrase usually appears, and then generating the kind of text that typically follows it on the web.
 
-In another run, one of the agents abruptly switched languages.
+That explains Asbury University too. University pages are extremely common in web training data. Clean, well-structured, lots of consistent formatting. They are basically the default "generic informational document" that a model reaches for when it needs to produce something plausible but has no strong signal pulling it elsewhere.
 
-Without any instruction, it began explaining Asbury University in Chinese:
+The mesothelioma pages are a different attractor entirely. That kind of legal spam is duplicated across thousands of domains with near-identical structure, which means it has a disproportionately high weight in any corpus scraped from the open web. It is one of the strongest statistical clusters in existence, which is also why it became a meme in the first place.
 
-> “美国阿斯伯里大学 (Asbury University) …”
+The Chinese text is probably multilingual spam and scraped chatbot logs bleeding through. DeepSeek's training data skews more heavily toward Chinese-language content than most Western models, so once the generation starts drifting semantically, switching to Chinese may actually increase the probability of continuing a coherent pattern rather than decrease it.
 
-The other agent followed along and continued the conversation bilingually.
+What makes this more interesting than a simple hallucination is the two-agent dynamic. Because temperature is set to 0, each model is fully deterministic given its input. The only source of variance is the conversation history itself. Once agent A produces something, agent B treats it as ground truth and builds on it. Agent A then receives that as context and refines further. The system has no mechanism to escape whatever attractor it lands in first. It is a feedback loop with no corrective signal, and it stabilizes fast.
 
-No translation prompt.  
-No language request.
+The thing that surprised me most was not how weird the outputs were. It was how consistent the weirdness was. Same attractors kept coming up across runs. Give a model no objective and it does not behave randomly. It becomes the internet, specifically the parts of the internet that are most aggressively over-represented in training data.
 
-Just spontaneous code-switching.
+This did not make it into my research because it was a side observation rather than a finding, but I think it is worth taking seriously. Multi-agent LLM systems are becoming more common, and most of the discussion around them focuses on capability and coordination. The attractor problem gets less attention. If agents have no well-specified objective, they do not stay neutral, they converge on whatever the training distribution pulls them toward. With deterministic sampling that convergence is permanent for the duration of the run. With stochastic sampling you get drift instead, which might be worse depending on what the agents are supposed to be doing.
 
-At this point I had stopped running experiments and started asking a different question:
+The question is not really why the model started talking about asbestos. The question is how many attractors like that exist, how strong they are, and what happens when you have a lot of autonomous agents with underspecified objectives bouncing between them unsupervised.
 
-**Why does “start a chat” trigger this?**
-
----
-
-# What’s Actually Going On?
-
-At first this looks like random hallucination.
-
-But after staring at enough logs, a pattern starts to emerge.
-
-## 1. The Model Is Looking for a “Conversation Template”
-
-When a prompt is extremely underspecified, the model has to infer what kind of text should follow.
-
-And the internet contains a lot of pseudo-conversational structures:
-
-- FAQ pages  
-- informational articles  
-- marketing pages  
-- legal advice pages  
-- Wikipedia entries  
-
-So the model appears to default to **high-probability document formats** that resemble dialogue.
-
-That’s why the second agent keeps responding with summaries.
-
-The models think they are collaborating on an article.
-
----
-
-## 2. SEO Spam Is Everywhere in Training Data
-
-The asbestos example is particularly telling.
-
-If you’ve spent any time on the internet, you’ve seen these pages:
-
-- “Mesothelioma compensation for veterans”  
-- “Call 1-800-LAWYER now”  
-- “You may be entitled to financial compensation”  
-
-These sites are aggressively duplicated across thousands of domains.
-
-From a language model’s perspective, they are **extremely dense statistical clusters**.
-
-So when the model drifts without guidance, it sometimes falls into one of these attractors.
-
----
-
-## 3. Two Agents Amplify Whatever Appears First
-
-Once the first model introduces a topic — even randomly — the second model treats it as context.
-
-If the first message looks like an informational page, the second agent assumes the task is:
-
-- summarize  
-- refine  
-- reorganize  
-
-The models then reinforce that structure.
-
-What started as noise quickly becomes **stable conversational dynamics**.
-
----
-
-## 4. Language Boundaries Are Soft
-
-The Chinese text is probably another artifact of the training corpus.
-
-Multilingual datasets often contain mirrored spam pages and scraped content with mixed languages.
-
-Once the model starts drifting semantically, switching languages may actually increase the probability of continuing the pattern.
-
-Which is why we sometimes see sudden **cross-lingual injections** mid-generation.
-
----
-
-# The Real Takeaway
-
-What surprised me most about this experiment wasn’t the weird outputs.
-
-It was how **consistent** the weirdness was.
-
-If you give an LLM no objective, it doesn’t behave randomly.
-
-It gravitates toward the **strongest statistical attractors in its training distribution**.
-
-And the internet’s strongest attractors are things like:
-
-- Wikipedia pages  
-- SEO landing pages  
-- FAQ summaries  
-- spammy legal advice sites  
-
-In other words, if you ask a language model to “just talk”…
-
-…it becomes the internet.
-
----
-
-# Why This Matters
-
-This might sound like a curiosity, but it matters for a growing area of research: **LLM agents interacting with each other**.
-
-If autonomous agents communicate without structure, they may:
-
-- converge on arbitrary topics  
-- amplify training-data artifacts  
-- drift into multilingual noise  
-- reinforce whatever attractor appears first  
-
-Once that attractor stabilizes, the system may stay there indefinitely.
-
-So the real question is not:
-
-> “Why did the model start talking about asbestos?”
-
-The real question is:
-
-**How many hidden attractors like this exist inside language models?**
-
-And what happens when thousands of autonomous agents start bouncing between them?
+Anyway. Asbury University seems nice.

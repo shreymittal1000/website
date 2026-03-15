@@ -4,11 +4,6 @@ id: llm-start-chat-blog
 title: When You Tell Two LLMs to "Start a Chat"
 excerpt: I let two LLMs talk with the prompt "Start a chat." The results were bizarre — university websites, legal disclaimers, and zero actual conversation.
 date: March 9, 2026
-readTime: 8 min read
-tags:
-  - AI
-  - Research
-  - LLMs
 ---
 
 # When You Tell Two LLMs to "Start a Chat"
