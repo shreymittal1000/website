@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ProjectsPage from './pages/ProjectsPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import InteractiveGrid from './components/InteractiveGrid';
@@ -29,9 +27,9 @@ export default function App() {
   }, [theme]);
 
   let page = <HomePage navigate={navigate} />;
-  if (currentPath === '/about') page = <AboutPage navigate={navigate} />;
-  if (currentPath === '/work') page = <ProjectsPage navigate={navigate} />;
-  if (currentPath === '/blog') page = <BlogPage navigate={navigate} />;
+  if (currentPath === '/writing' || currentPath === '/notes' || currentPath === '/blog') page = <BlogPage navigate={navigate} />;
+  if (currentPath.startsWith('/writing/')) page = <BlogPostPage postId={currentPath.split('/writing/')[1]} navigate={navigate} />;
+  if (currentPath.startsWith('/notes/')) page = <BlogPostPage postId={currentPath.split('/notes/')[1]} navigate={navigate} />;
   if (currentPath.startsWith('/blog/')) page = <BlogPostPage postId={currentPath.split('/blog/')[1]} navigate={navigate} />;
 
   return (

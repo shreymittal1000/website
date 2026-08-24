@@ -12,7 +12,7 @@ export default function BlogPage({ navigate }) {
       </header>
       <section className="section-shell post-list">
         {blogPosts.map((post, index) => (
-          <article key={post.id} className="post-row" onClick={() => navigate(`/blog/${post.id}`)}>
+          <article key={post.id} className="post-row" onClick={() => navigate(`/writing/${post.id}`)}>
             <span className="post-index">{String(index + 1).padStart(2, '0')}</span>
             <div><p className="eyebrow">Essay · {post.date}</p><h2>{post.title}</h2><p>{post.excerpt}</p></div>
             <button aria-label={`Read ${post.title}`}><ArrowUpRight /></button>

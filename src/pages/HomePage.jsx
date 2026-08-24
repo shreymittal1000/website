@@ -46,7 +46,7 @@ export default function HomePage({ navigate }) {
         <h2><span>[01]</span> running_processes <small>what I&apos;m doing now</small></h2>
         <ul className="plain-list">
           <li><span className="list-title">Mobilerun</span><span>Working on infrastructure, tools and intelligence for agents that interact with mobile devices.</span></li>
-          <li><span className="list-title">ETH Robotics Club</span><span>Research on how to benchmark the robustness and security of World Action Models, AI systems that predict what will happen and use those predictions to choose robot actions.</span></li>
+          <li><span className="list-title">ETH Robotics Club</span><span>Research on how to benchmark the robustness and security of World Action Models.</span></li>
           <li><span className="list-title">Multi-agent alignment</span><span>Continuing to investigate odd coordination patterns and conversational attractors in LLM systems.</span></li>
           <li><span className="list-title">This website</span><span>A place to keep research notes, projects, and things I want to remember.</span></li>
           <li><span className="list-title">ShreyWS</span><span>$300 impulse buy turned into my personal server + devops experiment ground.</span></li>
@@ -54,10 +54,10 @@ export default function HomePage({ navigate }) {
       </section>
 
       <section className="plain-section">
-        <div className="plain-section-head"><h2><span>[02]</span> ~/.logs <small>writing</small></h2><button onClick={() => navigate('/blog')}>all blogs <LinkArrow /></button></div>
+        <div className="plain-section-head"><h2><span>[02]</span> ~/.logs <small>writing</small></h2><button onClick={() => navigate('/writing')}>all posts <LinkArrow /></button></div>
         <ul className="plain-list link-list">
           {blogPosts.map((post) => (
-            <li key={post.id} onClick={() => navigate(`/blog/${post.id}`)}>
+            <li key={post.id} onClick={() => navigate(`/writing/${post.id}`)}>
               <span className="list-date">{post.date}</span>
               <span className="list-title">{post.title}</span>
               <LinkArrow />
@@ -67,30 +67,33 @@ export default function HomePage({ navigate }) {
       </section>
 
       <section className="plain-section">
-        <div className="plain-section-head"><h2><span>[03]</span> ~/src <small>projects</small></h2><button onClick={() => navigate('/work')}>inspect projects <LinkArrow /></button></div>
+        <div className="plain-section-head"><h2><span>[03]</span> ~/src <small>open source research and projects</small></h2></div>
         <ul className="plain-list project-list">
-          <li><a className="list-title" href="https://drive.google.com/file/d/12G0gquZL3gppnE5_XkCpl17nbKJHd29c/view?usp=sharing" target="_blank" rel="noreferrer">From Games to Governance <LinkArrow /></a><span>ETH thesis on identity cues and strategic behaviour in multi-agent LLMs.</span><span className="list-tech">Python · LLMs · game theory</span></li>
-          <li><a className="list-title" href="https://github.com/BrelLibrary/brel" target="_blank" rel="noreferrer">Brel <LinkArrow /></a><span>Open-source Python library for reading and analysing structured financial reports.</span><span className="list-tech">Python · XBRL · DataFrames</span></li>
-          <li><a className="list-title" href="https://github.com/shreymittal1000/WatermarkSmoothing" target="_blank" rel="noreferrer">Watermark Smoothing <LinkArrow /></a><span>Experiments extending watermark-smoothing attacks to different language models.</span><span className="list-tech">Jupyter · language models</span></li>
-          <li><a className="list-title" href="https://github.com/shreymittal1000/LlamaJailbreak" target="_blank" rel="noreferrer">LlamaJailbreak <LinkArrow /></a><span>Tests and notes from jailbreaking Llama 2 with different objectives.</span><span className="list-tech">Python · model safety</span></li>
-          <li><a className="list-title" href="https://github.com/shreymittal1000/tCHu" target="_blank" rel="noreferrer">tCHu <LinkArrow /></a><span>A Swiss digital version of Ticket to Ride, built as an EPFL university project.</span><span className="list-tech">Java</span></li>
+          <li><a className="list-title" href="https://drive.google.com/file/d/12G0gquZL3gppnE5_XkCpl17nbKJHd29c/view?usp=sharing" target="_blank" rel="noreferrer">From Games to Governance <LinkArrow /></a><span>Research on identity cues and strategic behaviour in multi-agent LLMs.</span><span className="list-tech"> AI Alignment · Game Theory</span></li>
+          <li><a className="list-title" href="https://github.com/BrelLibrary/brel" target="_blank" rel="noreferrer">Brel <LinkArrow /></a><span>Open-source Python library for reading and analysing financial data cubes.</span><span className="list-tech">Python · XBRL · Data Cubes</span></li>
+          <li><a className="list-title" href="https://github.com/shreymittal1000/WatermarkSmoothing" target="_blank" rel="noreferrer">Watermark Smoothing <LinkArrow /></a><span>Experiments extending watermark-smoothing attacks to different language models.</span><span className="list-tech"> Python · AI Red-Teaming</span></li>
+          <li><a className="list-title" href="https://github.com/shreymittal1000/tCHu" target="_blank" rel="noreferrer">tCHu <LinkArrow /></a><span>A Swiss digital version of Ticket to Ride, built as an EPFL university project.</span><span className="list-tech">Java · Game Development</span></li>
         </ul>
       </section>
 
       <section className="plain-section">
-        <div className="plain-section-head"><h2><span>[04]</span> git log --reverse <small>past background</small></h2><button onClick={() => navigate('/work')}>full history <LinkArrow /></button></div>
+        <div className="plain-section-head"><h2><span>[04]</span> git log --reverse <small>past background</small></h2></div>
         <ul className="plain-list history-list">
           <li><span className="list-date">2025–26</span><span className="list-title">Investment team, Merantix Capital</span><span>Early-stage AI investing in Berlin.</span></li>
+          <li><span className="list-date">2024-25</span><span className="list-title">Research assistant, ETH Zurich</span><span>With Harvard, looked into the legal implications of AI-generated art.</span></li>
+          <li><span className="list-date">2023-24</span><span className="list-title">Global operations, Siemens</span><span>In charge of the global operations for Siemens' BMS SaaS offering.</span></li>
           <li><span className="list-date">2023–25</span><span className="list-title">MSc Computer Science, ETH Zürich</span><span>Focus on AI robustness, security and alignment in multi-agent contexts.</span></li>
-          <li><span className="list-date">2022–23</span><span className="list-title">Undergraduate Exchange, UWaterloo</span><span>Took advantage of Waterloo's holistic education system.</span></li>
-          <li><span className="list-date">2021-now</span><span className="list-title">Research engineering & operations</span><span>Worked across an early startup, an AI scale-up, and a large multinational.</span></li>
+          <li><span className="list-date">2022–23</span><span className="list-title">Undergraduate Exchange, UWaterloo</span><span>Took advantage of Waterloo's entrepreneurial education system.</span></li>
+          <li><span className="list-date">2022</span><span className="list-title">SWE Intern, Stacksync</span><span>Made the 3rd party data connectors for the backend now powering 200+ clients.</span></li>
+          <li><span className="list-date">2021</span><span className="list-title">Research Intern, Mindtickle</span><span>Worked on AI meeting features. Coded the backend + ML & Data pipeline.</span></li>
+          <li><span className="list-date">2021–22</span><span className="list-title">President, ShARE EPFL</span><span>Led the EPFL chapter, ran it essentially as a startup consulting firm.</span></li>
           <li><span className="list-date">2020-23</span><span className="list-title">BSc Computer Science, EPFL</span><span>Took many theoretical courses, but also made my own smart glasses.</span></li>
         </ul>
       </section>
 
       <section className="plain-section small-things">
         <h2><span>[05]</span> offscreen.txt <small>outside work</small></h2>
-        <p>Badminton, Cricket, Football, Chess, PowerPoint karaoke, and treating recipes as loose implementation guidelines.</p>
+        <p>Badminton, cricket, football, chess, pub quizzes, and too much time in the kitchen.</p>
         <p>English · Hindi · French · enough German for the döner shop</p>
       </section>
     </div>

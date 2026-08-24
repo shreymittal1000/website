@@ -14,12 +14,12 @@ const markdownComponents = {
 
 export default function BlogPostPage({ postId, navigate }) {
   const post = getBlogPostById(postId);
-  if (!post) return <div className="missing-page section-shell"><p className="eyebrow">404</p><h1>That note doesn&apos;t exist.</h1><button className="text-link" onClick={() => navigate('/blog')}><ArrowLeft /> Back to writing</button></div>;
+  if (!post) return <div className="missing-page section-shell"><p className="eyebrow">404</p><h1>That post doesn&apos;t exist.</h1><button className="text-link" onClick={() => navigate('/writing')}><ArrowLeft /> Back to writing</button></div>;
 
   return (
     <div className="page-enter article-page">
       <header className="article-header section-shell">
-        <button className="text-link article-back" onClick={() => navigate('/blog')}><ArrowLeft size={17} /> All writing</button>
+        <button className="text-link article-back" onClick={() => navigate('/writing')}><ArrowLeft size={17} /> All writing</button>
         <p className="eyebrow">Field note · {post.date}</p>
         <h1>{post.title}</h1>
         <p className="article-deck">{post.excerpt}</p>
@@ -28,7 +28,7 @@ export default function BlogPostPage({ postId, navigate }) {
         <aside><span>Share / discuss</span><a href={`mailto:shreymittal1000@gmail.com?subject=${encodeURIComponent(post.title)}`}>Email me <ArrowUpRight size={15} /></a></aside>
         <article className="article-body"><ReactMarkdown components={markdownComponents}>{post.content || ''}</ReactMarkdown></article>
       </div>
-      <div className="article-end section-shell"><span>End note.</span><button className="button button-primary" onClick={() => navigate('/blog')}>More writing <ArrowUpRight size={18} /></button></div>
+      <div className="article-end section-shell"><span>End.</span><button className="button button-primary" onClick={() => navigate('/writing')}>More writing <ArrowUpRight size={18} /></button></div>
     </div>
   );
 }

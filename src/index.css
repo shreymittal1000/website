@@ -127,7 +127,6 @@ em { font-family:'IBM Plex Mono',monospace; font-weight:400; font-style:italic; 
 .intro-about { padding-top:22px; font-size:16px; line-height:1.7; }
 .intro-about p { margin:0 0 17px; }.intro-about a { border-bottom:1px solid var(--ink); }
 .plain-section { padding:65px 0; position:relative; }
-.plain-intro::after,.plain-section::after { content:''; position:absolute; left:50%; bottom:0; width:100vw; height:2px; background:var(--acid); transform:translateX(-50%); box-shadow:0 0 8px color-mix(in srgb,var(--acid) 55%,transparent); }
 .plain-section h2 { margin:0 0 30px; font:500 12px 'DM Mono'; color:#637b19; }
 .plain-section h2 span { display:inline-block; min-width:48px; color:var(--muted); }
 .plain-section-head { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }

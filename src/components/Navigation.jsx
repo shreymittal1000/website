@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { ArrowUpRight, Menu, Moon, Sun, X } from 'lucide-react';
 
 const navLinks = [
-  { path: '/work', label: 'Work' },
-  { path: '/blog', label: 'Notes' },
-  { path: '/about', label: 'About' },
+  { path: '/writing', label: 'Writing' },
 ];
 
 export default function Navigation({ currentPath, navigate, theme, toggleTheme }) {
