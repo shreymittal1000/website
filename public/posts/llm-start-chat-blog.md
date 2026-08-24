@@ -1,7 +1,7 @@
 ---
 id: llm-start-chat-blog
 title: When You Tell Two LLMs to "Start a Chat"
-excerpt: I let two LLMs talk with the prompt "Start a chat." The results were bizarre — university websites, legal disclaimers, and zero actual conversation.
+excerpt: I let two LLMs talk with the prompt "Start a chat." The results were... weird, consisting of university websites, legal disclaimers, and zero actual conversation.
 date: March 9, 2026
 readTime: 8 min read
 tags:
@@ -12,7 +12,7 @@ tags:
 
 # When You Tell Two LLMs to “Start a Chat”
 
-I discovered this bug — or behavior, depending on how charitable you’re feeling — by accident.
+I discovered this bug (or behavior, depending on your perspective) by accident.
 
 I’m currently running experiments for my master’s thesis where I let two large language models talk to each other. The goal is to study how models behave in **finite dialogues** before making strategic decisions in economic games. The setup is simple:
 
@@ -207,7 +207,7 @@ So when the model drifts without guidance, it sometimes falls into one of these 
 
 ## 3. Two Agents Amplify Whatever Appears First
 
-Once the first model introduces a topic — even randomly — the second model treats it as context.
+Once the first model introduces a topic, even randomly, the second model treats it as context.
 
 If the first message looks like an informational page, the second agent assumes the task is:
 

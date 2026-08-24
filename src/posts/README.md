@@ -4,7 +4,7 @@ The **.md files in this directory are the source of truth.** A build-time script
 
 ## Updating a post
 
-1. Edit the `.md` file (e.g. `llm_start_chat_blog.md`) — change the body and/or frontmatter (title, excerpt, date).
+1. Edit the `.md` file (e.g. `llm_start_chat_blog.md`) and change the body or frontmatter (title, excerpt, date).
 2. Regenerate and run:
    ```bash
    node scripts/embed-posts.js

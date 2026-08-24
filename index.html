@@ -2,11 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>personal-website</title>
+    <meta name="theme-color" content="#f2f0e9" />
+    <meta name="description" content="Shrey Mittal works across AI agents, engineering, research, and early-stage technology in Zürich." />
+    <meta property="og:title" content="Shrey Mittal, focusing on AI research, engineering & early-stage technology" />
+    <meta property="og:description" content="Research, writing, and selected work from Shrey Mittal." />
+    <meta property="og:type" content="website" />
+    <title>Shrey Mittal</title>
+    <script>
+      (() => {
+        const saved = localStorage.getItem('shrey-theme');
+        document.documentElement.dataset.theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      })();
+    </script>
   </head>
-  <body style="background:#0a0a0a;color:#fff;margin:0;min-height:100vh;">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

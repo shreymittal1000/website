@@ -52,7 +52,7 @@ for (const file of files) {
   }
 }
 
-posts.sort((a, b) => (new Date(b.date) || 0) - (new Date(a.date) || 0));
+posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
 const out = `// Auto-generated from src/posts/*.md by scripts/embed-posts.js – do not edit by hand
 export const posts = ${JSON.stringify(posts)};

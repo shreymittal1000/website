@@ -1,120 +1,34 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { ArrowLeft, Calendar } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { getBlogPostById } from '../data/blogPosts';
 
 const markdownComponents = {
-	h1: ({ children }) => (
-		<h1 className="text-5xl font-bold mb-8 mt-12 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-			{children}
-		</h1>
-	),
-	h2: ({ children }) => (
-		<h2 className="text-3xl font-bold mb-4 mt-10 text-[#00FF94] drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-			{children}
-		</h2>
-	),
-	h3: ({ children }) => (
-		<h3 className="text-2xl font-bold mb-3 mt-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-			{children}
-		</h3>
-	),
-	p: ({ children }) => (
-		<p className="mb-6 text-lg leading-relaxed text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-			{children}
-		</p>
-	),
-	ul: ({ children }) => (
-		<ul className="mb-6 list-disc list-inside space-y-2 text-lg text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-			{children}
-		</ul>
-	),
-	ol: ({ children }) => (
-		<ol className="mb-6 list-decimal list-inside space-y-2 text-lg text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-			{children}
-		</ol>
-	),
-	li: ({ children }) => <li className="leading-relaxed">{children}</li>,
-	strong: ({ children }) => (
-		<strong className="font-bold text-white/95">{children}</strong>
-	),
-	em: ({ children }) => (
-		<em className="italic text-white/80">{children}</em>
-	),
-	code: ({ children }) => (
-		<code className="px-1.5 py-0.5 bg-white/10 text-[#00FF94] rounded text-sm font-mono">
-			{children}
-		</code>
-	),
+  h1: ({ children }) => <h2>{children}</h2>,
+  h2: ({ children }) => <h2>{children}</h2>,
+  h3: ({ children }) => <h3>{children}</h3>,
+  a: ({ href, children }) => <a href={href} target="_blank" rel="noreferrer">{children}</a>,
+  code: ({ children }) => <code>{children}</code>,
+  pre: ({ children }) => <pre>{children}</pre>,
 };
 
-export default function BlogPostPage({ postId, navigate, setIsHovering }) {
-	const post = getBlogPostById(postId);
+export default function BlogPostPage({ postId, navigate }) {
+  const post = getBlogPostById(postId);
+  if (!post) return <div className="missing-page section-shell"><p className="eyebrow">404</p><h1>That note doesn&apos;t exist.</h1><button className="text-link" onClick={() => navigate('/blog')}><ArrowLeft /> Back to writing</button></div>;
 
-	if (!post) {
-		return (
-			<div className="page-enter min-h-screen px-8 py-32">
-				<div className="max-w-4xl mx-auto">
-					<h1 className="text-4xl font-bold mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-						Post Not Found
-					</h1>
-					<button
-						onClick={() => navigate('/blog')}
-						className="flex items-center gap-2 text-[#00FF94] hover:underline"
-						onMouseEnter={() => setIsHovering(true)}
-						onMouseLeave={() => setIsHovering(false)}
-					>
-						<ArrowLeft size={20} />
-						Back to Blog
-					</button>
-				</div>
-			</div>
-		);
-	}
-
-	return (
-		<div className="page-enter min-h-screen px-8 py-32">
-			<div className="max-w-4xl mx-auto">
-				{/* Back button */}
-				<button
-					onClick={() => navigate('/blog')}
-					className="flex items-center gap-2 text-white/80 hover:text-[#00FF94] mb-8 transition-colors"
-					onMouseEnter={() => setIsHovering(true)}
-					onMouseLeave={() => setIsHovering(false)}
-				>
-					<ArrowLeft size={20} />
-					Back to Blog
-				</button>
-
-				{/* Title */}
-				<h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-					{post.title}
-				</h1>
-
-				{/* Date */}
-				<div className="flex items-center gap-2 mb-12 text-white/70">
-					<Calendar size={18} />
-					<span>{post.date}</span>
-				</div>
-
-				{/* Content */}
-				<article className="backdrop-blur-sm bg-black/20 border border-white/10 rounded-none p-8 md:p-12">
-					<div className="prose prose-invert max-w-none">
-						<ReactMarkdown components={markdownComponents}>{post.content || ''}</ReactMarkdown>
-					</div>
-				</article>
-
-				{/* Back button at bottom */}
-				<button
-					onClick={() => navigate('/blog')}
-					className="flex items-center gap-2 text-white/80 hover:text-[#00FF94] mt-12 transition-colors"
-					onMouseEnter={() => setIsHovering(true)}
-					onMouseLeave={() => setIsHovering(false)}
-				>
-					<ArrowLeft size={20} />
-					Back to Blog
-				</button>
-			</div>
-		</div>
-	);
+  return (
+    <div className="page-enter article-page">
+      <header className="article-header section-shell">
+        <button className="text-link article-back" onClick={() => navigate('/blog')}><ArrowLeft size={17} /> All writing</button>
+        <p className="eyebrow">Field note · {post.date}</p>
+        <h1>{post.title}</h1>
+        <p className="article-deck">{post.excerpt}</p>
+      </header>
+      <div className="article-layout section-shell">
+        <aside><span>Share / discuss</span><a href={`mailto:shreymittal1000@gmail.com?subject=${encodeURIComponent(post.title)}`}>Email me <ArrowUpRight size={15} /></a></aside>
+        <article className="article-body"><ReactMarkdown components={markdownComponents}>{post.content || ''}</ReactMarkdown></article>
+      </div>
+      <div className="article-end section-shell"><span>End note.</span><button className="button button-primary" onClick={() => navigate('/blog')}>More writing <ArrowUpRight size={18} /></button></div>
+    </div>
+  );
 }

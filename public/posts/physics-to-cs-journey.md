@@ -1,7 +1,7 @@
 ---
 id: physics-to-cs-journey
 title: From Physics to Computer Science: My Unconventional Journey
-excerpt: Reflections on switching fields and what I learned along the way—from quantum mechanics to machine learning.
+excerpt: Reflections on switching fields and what I learned along the way, from quantum mechanics to machine learning.
 date: February 5, 2026
 readTime: 6 min read
 tags:
@@ -37,7 +37,7 @@ The moment I knew I needed to transition was when I found myself more excited ab
 Physics and computer science have different intellectual cultures. Physics values deep theoretical understanding and elegant derivations. CS often prioritizes practical solutions and iterative development.
 
 ### Breadth vs. Depth
-Physics taught me to go incredibly deep on specific problems. Computer science required me to develop breadth—learning new frameworks, languages, and paradigms rapidly.
+Physics taught me to go incredibly deep on specific problems. Computer science required me to develop breadth by learning new frameworks, languages, and paradigms rapidly.
 
 ### The Pace of Change
 Physics principles established decades ago remain relevant today. In CS, technologies and best practices evolve constantly. This required a mindset shift toward continuous learning.
@@ -45,7 +45,7 @@ Physics principles established decades ago remain relevant today. In CS, technol
 ## What Made It Easier Than Expected
 
 ### Mathematical Rigor
-The mathematical foundation from physics—linear algebra, calculus, probability theory—maps directly onto machine learning and theoretical CS.
+The mathematical foundation from physics (linear algebra, calculus, and probability theory) maps directly onto machine learning and theoretical CS.
 
 ### Problem-Solving Skills
 The systematic approach to problem-solving I developed in physics is universal. Whether debugging code or proving theorems, the logical thinking process is familiar.

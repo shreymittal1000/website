@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Linkedin, Instagram } from 'lucide-react';
 
-export default function ContactPage({ setIsHovering }) {
+export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,7 +27,7 @@ export default function ContactPage({ setIsHovering }) {
           GET IN <span className="text-[#00FF94]">TOUCH</span>
         </h1>
         <p className="text-xl mb-12 text-white/80 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          Always open to interesting conversations—whether casual or professional
+          Always open to interesting conversations, both casual or professional
         </p>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -78,8 +78,6 @@ export default function ContactPage({ setIsHovering }) {
               <button
                 type="submit"
                 className="w-full px-8 py-4 bg-[#00FF94] text-black font-semibold hover:bg-white transition-colors shadow-lg"
-                onMouseEnter={() => setIsHovering(true)}
-                onMouseLeave={() => setIsHovering(false)}
               >
                 Send Message
               </button>
@@ -97,8 +95,6 @@ export default function ContactPage({ setIsHovering }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-none transition-colors"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
                 >
                   <Linkedin size={24} className="text-[#00FF94]" />
                   <div>
@@ -112,8 +108,6 @@ export default function ContactPage({ setIsHovering }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-none transition-colors"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
                 >
                   <Instagram size={24} className="text-[#00FF94]" />
                   <div>
@@ -125,8 +119,6 @@ export default function ContactPage({ setIsHovering }) {
                 <a
                   href="mailto:shreymittal1000@gmail.com"
                   className="flex items-center gap-4 p-4 backdrop-blur-sm bg-white/10 hover:bg-white/20 rounded-none transition-colors"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
                 >
                   <Mail size={24} className="text-[#00FF94]" />
                   <div>

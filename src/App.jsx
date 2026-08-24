@@ -1,81 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navigation from './components/Navigation';
-// import ParticleCanvas from './components/ParticleCanvas';
-import BackgroundImage from './components/PhotoCanvas';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
-import SkillsPage from './pages/SkillsPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
-import ContactPage from './pages/ContactPage';
+import InteractiveGrid from './components/InteractiveGrid';
 import './styles/animations.css';
 
-// Simple hash-based router
 const useHashRouter = () => {
   const [currentPath, setCurrentPath] = useState(window.location.hash.slice(1) || '/');
-  
   useEffect(() => {
-    const handleHashChange = () => {
-      setCurrentPath(window.location.hash.slice(1) || '/');
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    const onHashChange = () => setCurrentPath(window.location.hash.slice(1) || '/');
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
-  
-  const navigate = (path) => {
-    window.location.hash = path;
-  };
-  
-  return { currentPath, navigate };
+  return { currentPath, navigate: (path) => { window.location.hash = path; } };
 };
 
 export default function App() {
   const { currentPath, navigate } = useHashRouter();
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
-
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light');
+  useEffect(() => window.scrollTo({ top: 0, behavior: 'instant' }), [currentPath]);
   useEffect(() => {
-    const handleMouseMove = (e) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('shrey-theme', theme);
+  }, [theme]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPath]);
+  let page = <HomePage navigate={navigate} />;
+  if (currentPath === '/about') page = <AboutPage navigate={navigate} />;
+  if (currentPath === '/work') page = <ProjectsPage navigate={navigate} />;
+  if (currentPath === '/blog') page = <BlogPage navigate={navigate} />;
+  if (currentPath.startsWith('/blog/')) page = <BlogPostPage postId={currentPath.split('/blog/')[1]} navigate={navigate} />;
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* <ParticleCanvas cursorPos={cursorPos} /> */}
-      <BackgroundImage />
-
-      <div className="relative" style={{ zIndex: 10 }}>
-        <Navigation 
-          currentPath={currentPath} 
-          navigate={navigate} 
-          setIsHovering={setIsHovering} 
-        />
-
-        {currentPath === '/' && <HomePage navigate={navigate} setIsHovering={setIsHovering} />}
-        {currentPath === '/about' && <AboutPage setIsHovering={setIsHovering} />}
-        {/* // {currentPath === '/projects' && <ProjectsPage setIsHovering={setIsHovering} />} */}
-        {currentPath === '/skills' && <SkillsPage setIsHovering={setIsHovering} />}
-        {currentPath === '/blog' && <BlogPage navigate={navigate} setIsHovering={setIsHovering} />}
-        {currentPath.startsWith('/blog/') && (
-          <BlogPostPage 
-            postId={currentPath.split('/blog/')[1]} 
-            navigate={navigate} 
-            setIsHovering={setIsHovering} 
-          />
-        )}
-        {currentPath === '/contact' && <ContactPage setIsHovering={setIsHovering} />}
-
-        <Footer setIsHovering={setIsHovering} />
-      </div>
+    <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <InteractiveGrid />
+      <Navigation currentPath={currentPath} navigate={navigate} theme={theme} toggleTheme={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+      <main id="main-content">{page}</main>
+      <Footer navigate={navigate} />
     </div>
   );
 }

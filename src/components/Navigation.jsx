@@ -1,75 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowUpRight, Menu, Moon, Sun, X } from 'lucide-react';
 
 const navLinks = [
-  { path: '/', label: 'Home' },
+  { path: '/work', label: 'Work' },
+  { path: '/blog', label: 'Notes' },
   { path: '/about', label: 'About' },
-  // { path: '/projects', label: 'Projects' },
-  { path: '/skills', label: 'Skills' },
-  { path: '/blog', label: 'Blog' },
-  { path: '/contact', label: 'Contact' },
 ];
 
-export default function Navigation({ currentPath, navigate, setIsHovering }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export default function Navigation({ currentPath, navigate, theme, toggleTheme }) {
+  const [open, setOpen] = useState(false);
+  const go = (path) => { navigate(path); setOpen(false); };
 
   return (
-    <>
-      <nav className="fixed top-0 left-0 right-0 z-50 p-4 flex justify-between items-center backdrop-blur-sm">
-        {/* <div 
-          className="text-3xl font-bold cursor-pointer"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-          onClick={() => navigate('/')}
-        >
-          {'>'} Shrey
-        </div> */}
-        
-        <div className="hidden md:flex gap-5 items-center">
+    <header className="nav-wrap">
+      <nav className="nav-bar" aria-label="Primary navigation">
+        <button className="wordmark" onClick={() => go('/')} aria-label="Shrey Mittal, home"><span className="prompt-mark">~/</span>shrey<span className="cursor-block">_</span></button>
+        <div className="nav-links">
           {navLinks.map((link) => (
-            <button
-              key={link.path}
-              onClick={() => navigate(link.path)}
-              className={`social-link text-base hover:text-[#00FF94] transition-colors ${
-                currentPath === link.path ? 'text-[#00FF94]' : ''
-              }`}
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-            >
-              {link.label}
+            <button key={link.path} onClick={() => go(link.path)} className={currentPath === link.path || currentPath.startsWith(`${link.path}/`) ? 'active' : ''}>
+              ./{link.label.toLowerCase()}
             </button>
           ))}
-        </div>
-
-        <div className="md:hidden">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
+            {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}<span>{theme === 'dark' ? 'light()' : 'dark()'}</span>
           </button>
+          <a className="nav-contact" href="mailto:shreymittal1000@gmail.com">contact() <ArrowUpRight size={15} /></a>
         </div>
+        <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Toggle navigation">{open ? <X /> : <Menu />}</button>
       </nav>
-
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed top-16 left-0 right-0 bg-black bg-opacity-95 z-40 p-6 space-y-3">
-          {navLinks.map((link) => (
-            <button
-              key={link.path}
-              onClick={() => {
-                navigate(link.path);
-                setMobileMenuOpen(false);
-              }}
-              className={`block w-full text-left py-1 text-base ${
-                currentPath === link.path ? 'text-[#00FF94]' : ''
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
+      {open && (
+        <div className="mobile-menu">
+          {navLinks.map((link) => <button key={link.path} onClick={() => go(link.path)}>{link.label}</button>)}
+          <button onClick={toggleTheme}>{theme === 'dark' ? 'light()' : 'dark()'} {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}</button>
+          <a href="mailto:shreymittal1000@gmail.com">Let&apos;s talk <ArrowUpRight size={18} /></a>
         </div>
       )}
-    </>
+    </header>
   );
 }
