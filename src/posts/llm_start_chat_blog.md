@@ -1,8 +1,8 @@
 ---
 id: llm-start-chat-blog
 title: When You Tell Two LLMs to "Start a Chat"
-excerpt: I paired DeepSeek-V3 with six other models and gave them the prompt "Start a chat." Only DeepSeek caused this. Every time.
-date: March 16, 2026
+excerpt: I paired DeepSeek-V3 with six other models and gave them the prompt "Start a chat." Only DeepSeek caused this.
+date: August 26, 2026
 ---
 
 When You Tell Two LLMs to "Start a Chat"
