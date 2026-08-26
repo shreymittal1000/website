@@ -5,8 +5,6 @@ excerpt: I paired DeepSeek-V3 with six other models and gave them the prompt "St
 date: August 26, 2026
 ---
 
-When You Tell Two LLMs to "Start a Chat"
-
 I found this by accident.
 
 A while back I was doing research on how LLMs behave in finite dialogues before making strategic decisions in economic games. It was a (relatively) minimal setup: two agents drawn from a pool of seven model families, a fixed number of turns, a simple Python loop handling the API calls, temperature set to 0 for determinism. Each agent would get the other's last message appended to its conversation history and respond. Nothing fancy.

@@ -32,7 +32,7 @@ export default function HomePage({ navigate }) {
                 </span>
               </span>
             </button>
-            <p className="intro-role">building @ Droidrun</p>
+            <p className="intro-role">building @ Mobilerun</p>
           </div>
           <div className="intro-about">
             <p>Engineer/Researcher/Builder interested in AI model behaviour, safety & alignment, and robotics. I studied computer science at EPFL and ETH Zürich, with a year at Waterloo.</p>

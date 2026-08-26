@@ -5,8 +5,6 @@ excerpt: "I arrived at EPFL intending to study physics. One programming course, 
 date: July 29, 2026
 ---
 
-# Why I Chose Computer Science Over Physics
-
 Recently, I have seen many of my friends who pursued degrees in physics switch to computer science, typically going into computation, ML research, and AI engineering.
 
 This made me reflect a bit on the time I switched. Granted, I switched much earlier (in my very first year of university) than the folks I was talking to, most of whom had just completed master's degrees (or even PhDs) in various domains of physics.

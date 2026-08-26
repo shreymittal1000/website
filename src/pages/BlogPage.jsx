@@ -6,7 +6,7 @@ export default function BlogPage({ navigate }) {
   return (
     <div className="page-enter">
       <header className="page-hero section-shell writing-hero">
-        <p className="eyebrow">~/notes / Field observations</p>
+        <p className="eyebrow">~/writing / Field observations</p>
         <h1>Things I noticed<br />and couldn&apos;t <em>leave alone.</em></h1>
         <p>A public notebook for documenting my thoughts and experiments.</p>
       </header>
