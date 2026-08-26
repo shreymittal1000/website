@@ -1,11 +1,11 @@
 ---
 id: physics-to-cs-journey
-title: "How I Drifted from Physics into Computer Science"
-excerpt: "Exposure, great professors, and perceived skill matter a lot. So does freedom for being creative."
+title: "Why I Chose Computer Science Over Physics"
+excerpt: "I arrived at EPFL intending to study physics. One programming course, a great professor, and an unexpected exam result changed that plan."
 date: July 29, 2026
 ---
 
-# How I Drifted from Physics into Computer Science
+# Why I Chose Computer Science Over Physics
 
 Recently, I have seen many of my friends who pursued degrees in physics switch to computer science, typically going into computation, ML research, and AI engineering.
 
@@ -21,18 +21,18 @@ I had also done a week of research in materials science through a program that s
 Hence, I made what felt like the most rational decision at the time. I applied to a plethora of colleges for physics and decided to join EPFL, one of the best universities in the world for STEM subjects and one that is about an hour's drive from CERN.
 
 ## My First Exposure to Computer Science
-I hadn't actually ever coded before starting university, and I only really took my first-ever course in it because it felt like the most useful elective. The only coding experience I had was making a zombie shooter game on Scratch. It was a fun project, and even though it taught you the basic principles of computational thinking, it's far from object-oriented programming in Java, which is what we were going to be doing.
+I hadn't actually ever coded before starting university, and I only really took my first-ever course in it because it felt like the most useful elective. The only coding experience I had was making a [zombie shooter game on Scratch](https://scratch.mit.edu/projects/14810644/). It was a fun project, and even though it taught you the basic principles of computational thinking, it's far from object-oriented programming in Java, which is what we were going to be doing.
 
 But I loved it. I did each weekly problem set for fun, and then I would extend many of those coding challenges with extra modifications of my own. It became a way of unleashing my creativity and a playground for my own imagination. Having a great teacher helped a lot as well (thank you, Prof. Petrescu)!
 
 Perhaps I was loving it a bit too much. Wasn't I supposed to love physics the most? I still loved those modules, but I wasn't quite spending as much free time on them as I was on the programming course. And so began the debate: do I take the leap of faith and switch?
 
 ## The Signs Only Pointed One Way
-The first thing I did was approach a lot of recent graduates and researchers who were either pursuing a PhD in physics or had already completed one, showing that they were (at least at some point) serious about a career in academia, which is the only real job where you work primarily as a physicist.
+The first thing I did was approach a lot of recent graduates and researchers who were either pursuing a PhD in physics or had already completed one. They were serious about a career in academia, one of the few paths where you work primarily as a physicist.
 
-They all basically told me the same story, which was that this path is only for those willing to make their love for physics the primary concern in their lives. Hence, it was not a coincidence that so many of them were looking to make the switch themselves.
+They all basically told me the same story: pursuing physics seriously required a willingness to organize much of your life around it. Hence, it was not a coincidence that so many of them were looking to make the switch themselves.
 
-And it made sense. Computer science offered more jobs and higher pay, and computer science skills were in high demand. But I wasn't going to change purely because of better prospects. I was searching for mission more than money.
+And it made sense. Computer science offered more jobs and higher pay, and computer science skills were in high demand. That mattered, but better prospects alone were not enough. I also wanted work that gave me room to build and be creative.
 
 And then came the exam results. During each exam session, the professor used to announce the 10 highest scores in the class. To my surprise, I was one of them (I came sixth in a class of 200+ students) and, as far as I knew, the only person in the top 10 who had never written a line of code before.
 
@@ -57,6 +57,6 @@ It took me a while to separate the two, but I then ended up merging them again a
 
 
 ## Why I Don't Look Back
-The answer to this is fairly simple: I enjoy it. There is a niche in CompSci for every curiosity, and I have found mine. It's also so vast that you can never truly get bored of it. At worst, you just pick up papers from a different conference.
+The answer is fairly simple: I enjoy it. There is a niche in computer science for almost every curiosity, and I have found mine. The field is also so vast that I can follow a new question without leaving it entirely. At worst, I start picking up papers from a different conference.
 
-The entrepreneurial spirit is also unmatched. I love the startup culture and grind, which is why I am working at a startup now and why I only ever consider roles at big companies where the teams care about their work and move fast. I want to maximize my impact rather than optimize for some arbitrary metric, and the culture lets me do exactly that.
+The freedom I first found while extending those weekly programming assignments is also what draws me to startups now. I like small teams that care about what they are building, move quickly, and give people enough ownership to follow an idea further than the original task required. It feels like the adult version of turning a problem set into a playground.

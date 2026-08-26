@@ -20,7 +20,9 @@ const useHashRouter = () => {
 export default function App() {
   const { currentPath, navigate } = useHashRouter();
   const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light');
-  useEffect(() => window.scrollTo({ top: 0, behavior: 'instant' }), [currentPath]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [currentPath]);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('shrey-theme', theme);

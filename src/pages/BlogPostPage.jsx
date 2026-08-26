@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Check, Copy } from 'lucide-react';
 import { getBlogPostById } from '../data/blogPosts';
 
 const markdownComponents = {
@@ -13,8 +13,27 @@ const markdownComponents = {
 };
 
 export default function BlogPostPage({ postId, navigate }) {
+  const [copied, setCopied] = useState(false);
   const post = getBlogPostById(postId);
   if (!post) return <div className="missing-page section-shell"><p className="eyebrow">404</p><h1>That post doesn&apos;t exist.</h1><button className="text-link" onClick={() => navigate('/writing')}><ArrowLeft /> Back to writing</button></div>;
+
+  const copyArticleLink = async () => {
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const input = document.createElement('textarea');
+      input.value = url;
+      input.style.position = 'fixed';
+      input.style.opacity = '0';
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input.remove();
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1800);
+  };
 
   return (
     <div className="page-enter article-page">
@@ -25,7 +44,7 @@ export default function BlogPostPage({ postId, navigate }) {
         <p className="article-deck">{post.excerpt}</p>
       </header>
       <div className="article-layout section-shell">
-        <aside><span>Share / discuss</span><a href={`mailto:shreymittal1000@gmail.com?subject=${encodeURIComponent(post.title)}`}>Email me <ArrowUpRight size={15} /></a></aside>
+        <aside><span>Share</span><button type="button" onClick={copyArticleLink}>{copied ? <>Copied <Check size={15} /></> : <>Copy link <Copy size={15} /></>}</button></aside>
         <article className="article-body"><ReactMarkdown components={markdownComponents}>{post.content || ''}</ReactMarkdown></article>
       </div>
       <div className="article-end section-shell"><span>End.</span><button className="button button-primary" onClick={() => navigate('/writing')}>More writing <ArrowUpRight size={18} /></button></div>

@@ -8,7 +8,7 @@ export default function BlogPage({ navigate }) {
       <header className="page-hero section-shell writing-hero">
         <p className="eyebrow">~/notes / Field observations</p>
         <h1>Things I noticed<br />and couldn&apos;t <em>leave alone.</em></h1>
-        <p>A public notebook for experiments, unexpected model behavior, half-formed theories, and explanations I wrote mainly to understand them myself.</p>
+        <p>A public notebook for documenting my thoughts and experiments.</p>
       </header>
       <section className="section-shell post-list">
         {blogPosts.map((post, index) => (
