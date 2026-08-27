@@ -13,7 +13,7 @@ button { border:0; cursor:pointer; }
 a { text-decoration:none; }
 button:focus-visible,a:focus-visible { outline:2px solid #6e7328; outline-offset:4px; }
 img { display:block; }
-::selection { color:var(--ink); background:var(--acid); }
+::selection { color:#10150f; background:var(--acid); }
 .site-shell { min-height:100vh; overflow:hidden; position:relative; }
 .site-shell::before { content:''; position:fixed; z-index:40; inset:0; pointer-events:none; background:repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 4px); mix-blend-mode:multiply; }
 .interactive-grid { position:fixed; z-index:0; inset:0; overflow:hidden; pointer-events:none; }
