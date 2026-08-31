@@ -27,7 +27,16 @@ export default function HomePage({ navigate }) {
                   <span className="flip-hint">[ hover / turn over ↻ ]</span>
                 </span>
                 <span className="identity-card-face identity-card-back">
-                  <img src="/background1.jpg" alt="Shrey at a science conference" />
+                  <img
+                    src="/background1-1280.webp"
+                    srcSet="/background1-640.webp 640w, /background1-1280.webp 1280w"
+                    sizes="(max-width: 520px) 92vw, 420px"
+                    width="1280"
+                    height="854"
+                    loading="eager"
+                    decoding="async"
+                    alt="Shrey at a science conference"
+                  />
                   <span className="photo-label">shrey_profile_01.jpg</span>
                 </span>
               </span>
@@ -49,7 +58,7 @@ export default function HomePage({ navigate }) {
           <li><span className="list-title">ETH Robotics Club</span><span>Research on how to benchmark the robustness and security of World Action Models.</span></li>
           <li><span className="list-title">Multi-agent alignment</span><span>Continuing to investigate odd coordination patterns and conversational attractors in LLM systems.</span></li>
           <li><span className="list-title">This website</span><span>A place to keep research notes, projects, and things I want to remember.</span></li>
-          <li><span className="list-title">ShreyWS</span><span>$300 impulse buy turned into my personal server + devops experiment ground.</span></li>
+          <li><span className="list-title">ShreyWS</span><span>My DIY server and devops lab. Hosts this website, my AI agents, and services for friends & family.</span></li>
         </ul>
       </section>
 
