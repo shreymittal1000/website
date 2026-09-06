@@ -9,7 +9,7 @@ const scriptDir = dirname(fileURLToPath(import.meta.url));
 const root = join(scriptDir, '..');
 const distDir = join(root, 'dist');
 const template = readFileSync(join(distDir, 'index.html'), 'utf8');
-const siteUrl = (process.env.SITE_URL || 'https://shrey.ws').replace(/\/$/, '');
+const siteUrl = (process.env.SITE_URL || 'https://shreymittal.me').replace(/\/$/, '');
 
 const formatDate = (date) => [
   date.getFullYear(),
